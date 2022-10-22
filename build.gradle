@@ -1,0 +1,35 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "org.elasticsearch.gradle:build-tools:8.4.2"
+    }
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+apply plugin: 'java'
+
+compileJava {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+apply plugin: 'elasticsearch.esplugin'
+
+group = "com.ifmo.ve"
+version = "0.0.1"
+
+esplugin {
+    name 've-analyzer'
+    description 'Custom analyzer for vector search'
+    classname 'com.ifmo.ve.analyzer.VectorAnalyzerPlugin'
+    licenseFile rootProject.file('LICENSE.txt')
+    noticeFile rootProject.file('NOTICE.txt')
+}
